@@ -1,0 +1,17 @@
+# shellcheck disable=SC2148
+# cargo path
+
+set -e
+
+PATH="$HOME/.cargo/bin:$PATH"
+PATH="/usr/sbin:$PATH"
+export PATH
+
+# dbus exports
+XDG_RUNTIME_DIR=/run/user/$(id -u)
+export XDG_RUNTIME_DIR
+export DBUS_SESSION_BUS_ADDRESS=unix:path=${XDG_RUNTIME_DIR}/bus
+
+export INFPATH="/home/inferno/inferno_runners" # not sure how my tmux spaghetti is gonna cope with spaces
+export SESSION="inferno"
+

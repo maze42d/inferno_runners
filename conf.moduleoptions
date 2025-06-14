@@ -1,0 +1,1 @@
+options g_audio c_ssize=4 p_ssize=4 iManufacturer="Lunrox" iProduct=Inferno1 iSerialNumber="08030601" c_chmask=0x03 p_chmask=0x03

@@ -1,0 +1,7 @@
+# shellcheck disable=SC2148
+
+pw-link "Inferno source:capture_FL" "UAC1_PCM:playback_FL"
+pw-link "Inferno source:capture_FR" "UAC1_PCM:playback_FR"
+pw-link "UAC1_PCM:capture_FL" "Inferno sink:playback_FL"
+pw-link "UAC1_PCM:capture_FR" "Inferno sink:playback_FR"
+

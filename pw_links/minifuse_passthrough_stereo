@@ -1,0 +1,10 @@
+# Inferno to DAC
+pw-link "Inferno source:capture_FL" "alsa_output.usb-ARTURIA_MiniFuse_1_8831400345061105-00.analog-surround-40:playback_FL"
+pw-link "Inferno source:capture_FR" "alsa_output.usb-ARTURIA_MiniFuse_1_8831400345061105-00.analog-surround-40:playback_FR"
+
+# DAC to Inferno#1
+pw-link "alsa_input.usb-ARTURIA_MiniFuse_1_8831400345061105-00.analog-surround-40:capture_FL" "Inferno sink:playback_1"
+
+# PC to DAC
+pw-link "alsa_input.platform-fcc00000.usb.stereo-fallback:capture_FL" "alsa_output.usb-ARTURIA_MiniFuse_1_8831400345061105-00.analog-surround-40:playback_FL"
+pw-link "alsa_input.platform-fcc00000.usb.stereo-fallback:capture_FR" "alsa_output.usb-ARTURIA_MiniFuse_1_8831400345061105-00.analog-surround-40:playback_FR"
