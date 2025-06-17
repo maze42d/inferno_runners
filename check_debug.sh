@@ -2,11 +2,13 @@
 source "_source"
 
 check_passed() {
-  echo "Check $1: pass"
+  # Green
+  echo -e "Check $1: \033[0;32mpass\033[0m"
 }
 
 check_failed() {
-  echo "Check $1: fail"
+  # Red
+  echo -e "Check $1: \033[0;31mfail\033[0m"
   exit "${2:-1}"
 }
 
