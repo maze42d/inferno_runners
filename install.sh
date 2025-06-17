@@ -45,7 +45,18 @@ cd "$DIR"
 cd inferno
 cargo build -r
 
-doas cp -v target/release/libasound_module_pcm_inferno.so /usr/lib/aarch64-linux-gnu/alsa-lib
+# Determine architecture for library path
+ARCH=$(dpkg --print-architecture)
+LIBDIR="/usr/lib/$ARCH/alsa-lib"
+
+doas cp -v target/release/libasound_module_pcm_inferno.so "$LIBDIR"
+
+# Install and enable inferno user service
+mkdir -p "$HOME/.config/systemd/user"
+cp $DIR/inferno.service "$HOME/.config/systemd/user/inferno.service"
+systemctl --user daemon-reload
+systemctl --user enable --now inferno.service
+echo "Enabled inferno user service for user $(whoami)"
 
 echo "Done. Remeber to set the interface in statime/inferno-ptpv1.toml"
 echo "Currently set to:"

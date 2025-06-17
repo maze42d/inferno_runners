@@ -1,3 +1,4 @@
+# shellcheck disable=SC2154,SC1091,SC2148
 source _source
 
 wpctl status | \

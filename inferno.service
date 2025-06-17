@@ -1,0 +1,11 @@
+[Unit]
+Description=Start Inferno Runners Launch Script
+
+[Service]
+Type=simple
+WorkingDirectory=/home/inferno/inferno_runners
+ExecStart=/home/inferno/inferno_runners/launch.sh
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

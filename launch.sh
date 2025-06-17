@@ -31,3 +31,5 @@ tmux send-keys -t "$SESSION":0.2 "sleep 5 && ./run_init_and_pipewire.sh" C-m
 tmux select-pane -t "$SESSION":0.0
 
 tmux attach-session -t "$SESSION"
+
+# TODO: error handling?
