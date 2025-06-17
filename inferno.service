@@ -2,7 +2,8 @@
 Description=Start Inferno Runners Launch Script
 
 [Service]
-Type=simple
+Type=oneshot
+RemainAfterExit=yes
 WorkingDirectory=/home/inferno/inferno_runners
 ExecStart=/home/inferno/inferno_runners/launch.sh
 Restart=on-failure
