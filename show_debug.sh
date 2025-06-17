@@ -96,10 +96,24 @@ run_checks() {
   fi
   check_passed "$check_name"
 
+  # statime is owned by inferno:inferno
+  check_name="statime is owned by inferno:inferno"
+  if ! [ "$(stat -c '%U:%G' "$INFPATH/statime")" = "inferno:inferno" ]; then
+    check_failed "$check_name" 17
+  fi
+  check_passed "$check_name"
+
   # inferno is cloned in INFPATH/inferno
   check_name="inferno is cloned in INFPATH/inferno"
   if [ ! -d "$INFPATH/inferno/.git" ]; then
     check_failed "$check_name" 10
+  fi
+  check_passed "$check_name"
+
+  # inferno is owned by inferno:inferno
+  check_name="inferno is owned by inferno:inferno"
+  if ! [ "$(stat -c '%U:%G' "$INFPATH/inferno")" = "inferno:inferno" ]; then
+    check_failed "$check_name" 16
   fi
   check_passed "$check_name"
 
