@@ -16,12 +16,12 @@ echo "[ ] If your dac or amp has a knob, make sure it's not turned down or muted
 echo;
 check_passed() {
   # Green
-  echo -e "Check $1: \033[0;32mpass\033[0m"
+  echo -e "\033[0;32m[PASS]\033[0m: Check $1"
 }
 
 check_failed() {
   # Red
-  echo -e "Check $1: \033[0;31mfail\033[0m"
+  echo -e "\033[0;31m[FAIL]\033[0m: Check $1"
   exit "${2:-1}"
 }
 
