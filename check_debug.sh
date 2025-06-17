@@ -12,8 +12,8 @@ echo "    wiremix (cargo install wiremix) can show output level so you can see i
 echo "[ ] See if you're using the correct link profile (\`active\` symlink in pw-links)"
 echo "    write your own if needed (\`pw-link -i\` or \`-o\` will be helpful, \`pw-link -l\` to list all links)"
 echo "    remember, think sink of sink as a microphone, and source as a speaker (confused me for a while)"
-echo "[ ] If your dac or amp has a knob, make sure it's not turned down or muted"
-
+echo "[ ] If your dac or amp has a knob, make sure it's not turned down or muted (or off entirely) (trust me, it happens)"
+echo;
 check_passed() {
   # Green
   echo -e "Check $1: \033[0;32mpass\033[0m"
