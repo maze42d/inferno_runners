@@ -1,5 +1,18 @@
 #!/bin/bash
+# shellcheck disable=SC1091
 source "_source"
+
+./check_status.sh
+
+echo "if inferno is starting properly the checks below should pass anyway. If there's still issues check this:"
+echo "[ ] See if your devices and sinks are not muted above ^"
+echo "[ ] See if statime is working; you'll be seeing 'LOG: Steered frequency by X' in the output (see \`tmux attach\`, get back out with \`Ctrl+b d\`)"
+echo "[ ] See if you can play music with aplay (see \`aplay -l\` or \`arecord -l\` for devices, use /dev/urandom as a test file, it's just noise)"
+echo "    wiremix (cargo install wiremix) can show output level so you can see if the sound is actually playing and going somewhere"
+echo "[ ] See if you're using the correct link profile (\`active\` symlink in pw-links)"
+echo "    write your own if needed (\`pw-link -i\` or \`-o\` will be helpful, \`pw-link -l\` to list all links)"
+echo "    remember, think sink of sink as a microphone, and source as a speaker (confused me for a while)"
+echo "[ ] If your dac or amp has a knob, make sure it's not turned down or muted"
 
 check_passed() {
   # Green
