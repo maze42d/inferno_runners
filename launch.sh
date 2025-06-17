@@ -2,7 +2,11 @@
 
 set -e
 
-sleep 10
+# sleep if is service
+if ! [ -t 1 ]; then
+    echo "Not running in a terminal; sleeping for 10 seconds."
+    sleep 5
+fi
 
 DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 cd "$DIR"
