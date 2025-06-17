@@ -6,6 +6,8 @@ Type=oneshot
 RemainAfterExit=yes
 WorkingDirectory=/home/inferno/inferno_runners
 ExecStart=/usr/bin/bash /home/inferno/inferno_runners/launch.sh
+StandardOutput=journal
+StandardError=journal
 Restart=on-failure
 
 [Install]

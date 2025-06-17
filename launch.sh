@@ -30,6 +30,11 @@ tmux send-keys -t "$SESSION":0.2 "sleep 5 && ./run_init_and_pipewire.sh" C-m
 
 tmux select-pane -t "$SESSION":0.0
 
-tmux attach-session -t "$SESSION"
+# Only attach if running in a terminal
+if [ -t 1 ]; then
+    tmux attach-session -t "$SESSION"
+else
+    echo "Not running in a terminal; tmux session '$SESSION' started in background."
+fi
 
 # TODO: error handling?
