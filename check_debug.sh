@@ -2,7 +2,7 @@
 # shellcheck disable=SC1091
 source "_source"
 
-./check_status.sh
+./show_status.sh
 
 echo "if inferno is starting properly the checks below should pass anyway. If there's still issues check this:"
 echo "[ ] See if your devices and sinks are not muted above ^"
