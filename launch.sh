@@ -2,6 +2,8 @@
 
 set -e
 
+sleep 10
+
 DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 cd "$DIR"
 
