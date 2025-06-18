@@ -10,6 +10,8 @@ fi
 
 echo "Linker: Using $(readlink active)"
 
+sleep 0.3
+
 ./active
 
 echo "---"
