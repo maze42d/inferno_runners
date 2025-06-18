@@ -7,7 +7,7 @@ echo "performance" | doas tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_gover
 cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 
 cd "$INFPATH"
-doas cp conf.alsa /etc/alsa/conf.d/80-inferno.conf
+doas cp config/alsa.conf /etc/alsa/conf.d/80-inferno.conf
 
 # Run install.sh reinstall instead
 #cd "$INFPATH/inferno"
@@ -15,5 +15,5 @@ doas cp conf.alsa /etc/alsa/conf.d/80-inferno.conf
 
 sleep 1
 
-pipewire -c "$INFPATH/conf.pipewire.conf" &
+pipewire -c "$INFPATH/config/pipewire.conf" &
 wireplumber &

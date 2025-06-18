@@ -2,7 +2,7 @@
 
 set -e
 
-doas cp conf.moduleoptions /etc/modprobe.d/inferno.conf
+doas cp config/moduleoptions.conf/etc/modprobe.d/inferno.conf
 
 # doas rmmod g_audio || true
 doas modprobe dwc2
