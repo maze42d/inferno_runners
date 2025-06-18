@@ -15,3 +15,9 @@ export DBUS_SESSION_BUS_ADDRESS=unix:path=${XDG_RUNTIME_DIR}/bus
 export INFPATH="/home/inferno/inferno_runners" # not sure how my tmux spaghetti is gonna cope with spaces
 export SESSION="inferno"
 
+# Source config.conf.sh if it exists
+if [ -f "$INFPATH/config/inferno.conf.sh" ]; then
+    # shellcheck source=config/inferno.conf.sh
+    . "$INFPATH/config/inferno.conf.sh"
+fi
+
