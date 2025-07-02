@@ -41,6 +41,10 @@ doas systemctl enable --now rtkit-daemon.service
 doas mkdir -p /etc/polkit-1/rules.d
 doas cp -v "$DIR/config/polkit-rtkit-audio.rules" /etc/polkit-1/rules.d/90-inferno-pipewire-rtkit.rules
 
+# install limits.d config
+doas mkdir -p /etc/security/limits.d
+doas cp -v "$DIR/config/limits.conf" /etc/security/limits.d/90-inferno-pipewire.conf
+
 # clone
 git clone --recurse-submodules -b inferno-dev https://github.com/teodly/statime
 git clone --recursive https://github.com/teodly/inferno
