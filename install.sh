@@ -34,7 +34,10 @@ systemctl --user daemon-reload
 
 # enable rtkit
 
-doas systemctl enable --now rtkit-daemon.service
+doas systemctl enable --now rtkit-daemon. service
+
+# enable irqbalance
+# doas systemctl enable --now irqbalance.service
 
 # install polkit rule
 

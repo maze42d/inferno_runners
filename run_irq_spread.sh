@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# use irqbalance instead
+
 AFFINITY_MASK="0C"  # binary 1100 = CPU2 + CPU3
 
 DEVICES=("xhci" "ehci" "ohci" "dwc3" "mmc" "eth" "i2c")
