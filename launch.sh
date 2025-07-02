@@ -28,7 +28,7 @@ tmux new-session -d -s "$SESSION"
 tmux send-keys -t "$SESSION":0.0 "./run_ptp.sh" C-m
 
 tmux split-window -h -t "$SESSION":0.0
-tmux send-keys -t "$SESSION":0.1 "sleep 5 && ./run_inferno.sh && ./run_pipewire_linker.sh" C-m
+tmux send-keys -t "$SESSION":0.1 "doas ./run_irq_spread.sh && sleep 5 && ./run_inferno.sh && ./run_pipewire_linker.sh" C-m
 
 tmux split-window -v -t "$SESSION":0.1
 tmux send-keys -t "$SESSION":0.2 "./run_init_and_pipewire.sh" C-m
