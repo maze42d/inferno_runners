@@ -1,0 +1,8 @@
+polkit.addRule(function(action, subject) {
+    if (
+        action.id == "org.freedesktop.RealtimeKit1.acquire-real-time" &&
+        subject.isInGroup("audio")
+    ) {
+        return polkit.Result.YES;
+    }
+});
