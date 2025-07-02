@@ -3,4 +3,4 @@
 doas systemctl stop systemd-timesyncd
 sleep 1
 cd statime
-doas taskset "$CORES_STATIME" target/release/statime -c inferno-ptpv1.toml
+doas taskset -c "$CORES_STATIME" target/release/statime -c inferno-ptpv1.toml
