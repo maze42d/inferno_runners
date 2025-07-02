@@ -25,12 +25,21 @@ if [[ "$1" == "reinstall" ]]; then
 fi
 
 # deps
-doas apt install -y pipewire wireplumber libasound2-dev tmux git pkg-config libasound2-dev libasound2-plugins
+doas apt install -y pipewire wireplumber libasound2-dev tmux git pkg-config libasound2-dev libasound2-plugins rtkit
 
 # allow clock
 mkdir -p ~/.config/systemd/user/pipewire.service.d
 echo -e "[Service]\nSystemCallFilter=@clock" > ~/.config/systemd/user/pipewire.service.d/override.conf
 systemctl --user daemon-reload
+
+# enable rtkit
+
+doas systemctl enable --now rtkit-daemon.service
+
+# install polkit rule
+
+doas mkdir -p /etc/polkit-1/rules.d
+doas cp -v "$DIR/config/polkit-rtkit-audio.rules" /etc/polkit-1/rules.d/90-inferno-pipewire-rtkit.rules
 
 # clone
 git clone --recurse-submodules -b inferno-dev https://github.com/teodly/statime
