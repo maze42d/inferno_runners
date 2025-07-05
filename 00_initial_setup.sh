@@ -50,7 +50,8 @@ sleep 5
 
 # dont mind this thx
 
-cd ~$IUSER
+# cd ~$IUSER
+cd /home/"$IUSER" # apparently cant do ~$IUSER
 doas -u "$IUSER" "git clone '$REPO_URL'"
 cd inferno_runners
 doas -u "$IUSER" "bash 01_install.sh"
