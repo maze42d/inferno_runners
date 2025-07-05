@@ -52,6 +52,6 @@ sleep 5
 
 # cd ~$IUSER
 cd /home/"$IUSER" # apparently cant do ~$IUSER
-doas -u "$IUSER" "git" "clone '$REPO_URL'"
+doas -u "$IUSER" git clone "$REPO_URL"
 cd inferno_runners
-doas -u "$IUSER" "bash" "01_install.sh"
+doas -u "$IUSER" bash "01_install.sh"
