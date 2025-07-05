@@ -150,8 +150,8 @@ check_name="Kernel version is NOT 6.1"
 kernel_version=$(uname -r)
 
 if echo "$kernel_version" | grep -Eq '^6\.1(\.|-)'; then
-  echo "!!!! if pipewire suddenly pins a core and xruns, this is your issue"
   check_warn "$check_name"
+  echo "!!!! if pipewire suddenly pins a core and xruns, this is your issue"
 else
   check_passed "$check_name"
 fi
