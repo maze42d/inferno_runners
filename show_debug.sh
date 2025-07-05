@@ -25,6 +25,11 @@ check_failed() {
   exit "${2:-1}"
 }
 
+check_warn() {
+  # Yellow
+  echo -e "\033[0;33m[WARN]\033[0m: Check $1"
+}
+
 run_checks() {
   # Not running as root
   local check_name="Not running as root"
@@ -139,15 +144,26 @@ run_checks() {
   fi
   check_passed "$check_name"
 
-  # DBUS_SESSION_BUS_ADDRESS UID matches current UID
-  check_name="DBUS_SESSION_BUS_ADDRESS UID matches current UID"
-  if echo "$DBUS_SESSION_BUS_ADDRESS" | grep -q 'uid='; then
-    dbus_uid=$(echo "$DBUS_SESSION_BUS_ADDRESS" | sed -n 's/.*uid=\([0-9]*\).*/\1/p')
-    if [ -n "$dbus_uid" ] && [ "$dbus_uid" != "$UID" ]; then
-      check_failed "$check_name" 14
-    fi
-  fi
+# Kernel version is NOT 6.1.*
+# this only applies if pipewire suddenly pins a core to 100% and xruns into oblivion
+check_name="Kernel version is NOT 6.1"
+kernel_version=$(uname -r)
+
+if echo "$kernel_version" | grep -Eq '^6\.1(\.|-)'; then
+  echo "!!!! if pipewire suddenly pins a core and xruns, this is your issue"
+  check_warn "$check_name"
+else
   check_passed "$check_name"
+fi
+
+  # Not using kernel ^6.1
+  check_name="Not using kernel 6.1"
+
+# USE REGEX
+
+
+
+
 }
 
 run_checks
