@@ -42,10 +42,15 @@ loginctl enable-linger "$IUSER"
 
 echo "Setting up doas for no password (!!!)"
 echo "permit nopass $IUSER" | tee -a /etc/doas.conf
+echo "permit nopass root as $IUSER" | tee -a /etc/doas.conf
 
 echo "Running the second install script as $IUSER"
 echo "Press CTRL+C to cancel"
 sleep 5
 
 # dont mind this thx
+
+cd ~$IUSER
+doas -u "$IUSER" "git clone '$REPO_URL'"
+doas -u "$IUSER" bash -c "git clone '$REPO_URL' && (cd inferno_runners && ./01_install.sh)"
 doas -u "$IUSER" bash -c "git clone '$REPO_URL' && (cd inferno_runners && ./01_install.sh)"
