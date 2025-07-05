@@ -45,12 +45,12 @@ git clone --recursive https://github.com/teodly/inferno
 
 # build
 cd statime
-CARGO_NET_GIT_FETCH_WITH_CLI=true cargo build -r
+CARGO_NET_GIT_FETCH_WITH_CLI=true cargo build -r -j3
 
 cd "$DIR"
 
 cd inferno
-cargo build -r
+cargo build -r -j3
 
 doas cp -v target/release/libasound_module_pcm_inferno.so /usr/lib/aarch64-linux-gnu/alsa-lib
 
