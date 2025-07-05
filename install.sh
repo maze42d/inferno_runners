@@ -2,7 +2,6 @@
 
 set -e # dies on fail
 
-
 # workdir be the folder where the script is
 DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 cd "$DIR"
@@ -33,7 +32,7 @@ doas apt install -y pipewire wireplumber libasound2-dev tmux git pkg-config liba
 
 # allow clock
 mkdir -p ~/.config/systemd/user/pipewire.service.d
-echo -e "[Service]\nSystemCallFilter=@clock" > ~/.config/systemd/user/pipewire.service.d/override.conf
+echo -e "[Service]\nSystemCallFilter=@clock" >~/.config/systemd/user/pipewire.service.d/override.conf
 systemctl --user daemon-reload
 
 # enable rtkit
@@ -54,7 +53,7 @@ doas cp -v "$DIR/config/limits.conf" /etc/security/limits.d/90-inferno-pipewire.
 
 # clone
 git clone --recurse-submodules -b inferno-dev https://github.com/teodly/statime || echo "statime already cloned or failed to clone; perms?"
-git clone --recursive https://github.com/teodly/inferno || echo "inferno already cloned or failed to clone; perms?";
+git clone --recursive https://github.com/teodly/inferno || echo "inferno already cloned or failed to clone; perms?"
 
 # build
 cd statime
@@ -65,9 +64,13 @@ cd "$DIR"
 cd inferno
 cargo build -r
 
-# Determine architecture for library path
+# hope you're not running anything but arm64 or amd64 good luck
 ARCH=$(uname -m)
-LIBDIR="/usr/lib/$ARCH/alsa-lib"
+if [[ "$ARCH" == "aarch64" ]]; then
+    LIBDIR="/usr/lib/aarch64-linux-gnu/alsa-lib"
+else
+    LIBDIR="/usr/lib/alsa-lib"
+fi
 
 doas cp -v target/release/libasound_module_pcm_inferno.so "$LIBDIR"
 
