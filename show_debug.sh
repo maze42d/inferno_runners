@@ -156,12 +156,25 @@ else
   check_passed "$check_name"
 fi
 
-  # Not using kernel ^6.1
-  check_name="Not using kernel 6.1"
 
-# USE REGEX
+# Exactly one user has systemd linger enabled
+check_name="Exactly one user has systemd linger enabled"
 
+linger_dir="/var/lib/systemd/linger"
+if [ ! -d "$linger_dir" ]; then
+  check_failed "$check_name" 20
+fi
 
+linger_count=$(find "$linger_dir" -type f | wc -l)
+
+if [ "$linger_count" -ne 1 ]; then
+  check_warn "$check_name"
+  echo "you might be running multiple users with inferno:"
+  ls "$linger_dir"
+  echo "disregard this if you know what you're doing"
+fi
+
+check_passed "$check_name"  
 
 
 }

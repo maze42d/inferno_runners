@@ -6,7 +6,18 @@
 DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 cd "$DIR"
 pwd
-echo "Cargo installed: $(which cargo || echo "no, please quit and install rustup")"
+
+source "$DIR/_source"
+echo "Cargo available: $(which cargo || echo "no")"
+
+if ! command -v cargo &>/dev/null; then
+  echo "cargo not found, installing rustup and Rust toolchain..."
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+else
+  echo "cargo is already installed, skipping rustup installation."
+fi
+
+
 sleep 2
 
 # deps
