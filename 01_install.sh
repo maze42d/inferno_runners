@@ -20,6 +20,14 @@ fi
 
 sleep 2
 
+# install inferno service
+echo "Installing inferno user service"
+# apologies about harcoding xdg paths
+mkdir -p "$HOME/.config/systemd/user"
+cp $DIR/inferno.service "$HOME/.config/systemd/user/inferno.service"
+systemctl --user daemon-reload
+systemctl --user enable inferno.service
+
 # deps
 doas apt install -y pipewire wireplumber libasound2-dev tmux git pkg-config libasound2-dev libasound2-plugins
 
