@@ -36,6 +36,9 @@ mkdir -p ~/.config/systemd/user/pipewire.service.d
 echo -e "[Service]\nSystemCallFilter=@clock" > ~/.config/systemd/user/pipewire.service.d/override.conf
 systemctl --user daemon-reload
 
+# disable pipewire and wireplumber services
+systemctl --user disable pipewire.service wireplumber.service
+
 # clone
 git clone --recurse-submodules -b inferno-dev https://github.com/teodly/statime
 git clone --recursive https://github.com/teodly/inferno
