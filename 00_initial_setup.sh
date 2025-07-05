@@ -40,6 +40,9 @@ fi
 echo "Enabling linger"
 loginctl enable-linger "$IUSER"
 
+echo "Setting up multi-user target (this will disable you desktop environment if you have one)"
+systemctl set-default multi-user.target
+
 echo "Setting up doas for no password (!!!)"
 echo "permit nopass $IUSER" | tee -a /etc/doas.conf
 echo "permit nopass root as $IUSER" | tee -a /etc/doas.conf

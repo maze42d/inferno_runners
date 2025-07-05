@@ -2,9 +2,13 @@
 
 set -e # dies on fail
 
+
 # workdir be the folder where the script is
 DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 cd "$DIR"
+
+source "_source"
+
 pwd
 echo "Cargo installed: $(which cargo || echo "no, please quit and install rustup")"
 sleep 2
@@ -13,12 +17,12 @@ sleep 2
 if [[ "$1" == "reinstall" ]]; then
     echo "Rebuilding and reinstalling inferno and statime"
     cd statime
-    CARGO_NET_GIT_FETCH_WITH_CLI=true cargo build -r
+    CARGO_NET_GIT_FETCH_WITH_CLI=true cargo build -r -j3
 
     cd "$DIR"
 
     cd inferno
-    cargo build -r
+    cargo build -r -j3
 
     doas cp -v target/release/libasound_module_pcm_inferno.so /usr/lib/aarch64-linux-gnu/alsa-lib
     exit 0
