@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# run as root via curl https://raw.githubusercontent.com/maze42d/inferno_runners/refs/heads/master/00_initial_setup.sh | sh
+
 set -e
 
 echo "Running inferno initial setup script"
@@ -13,12 +15,6 @@ IPASS="1nfern0" # preset password is not good, change it (passwd $IUSER)
 
 REPO_URL="https://github.com/maze42d/inferno_runners"
 
-
-# iuid is number
-if ! [[ $IUID =~ ^[0-9]+$ ]]; then
-  echo "iUID must be a number"
-  exit 1
-fi
 
 echo "Installing dependencies"
 apt install git doas udev dbus alsa-utils rtkit pipewire wireplumber libasound2-dev tmux git pkg-config libasound2-dev libasound2-plugins
