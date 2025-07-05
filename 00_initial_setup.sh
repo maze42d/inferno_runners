@@ -41,7 +41,7 @@ echo "Enabling linger"
 loginctl enable-linger "$IUSER"
 
 echo "Setting up doas for no password (!!!)"
-echo "permit nopasswd $IUSER" | tee -a /etc/doas.conf
+echo "permit nopass $IUSER" | tee -a /etc/doas.conf
 
 echo "Running the second install script as $IUSER"
 echo "Press CTRL+C to cancel"
