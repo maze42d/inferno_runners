@@ -66,7 +66,7 @@ cd inferno
 cargo build -r
 
 # Determine architecture for library path
-ARCH=$(dpkg --print-architecture)
+ARCH=$(uname -m)
 LIBDIR="/usr/lib/$ARCH/alsa-lib"
 
 doas cp -v target/release/libasound_module_pcm_inferno.so "$LIBDIR"
