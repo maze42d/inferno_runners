@@ -52,5 +52,5 @@ sleep 5
 
 cd ~$IUSER
 doas -u "$IUSER" "git clone '$REPO_URL'"
-doas -u "$IUSER" bash -c "git clone '$REPO_URL' && (cd inferno_runners && ./01_install.sh)"
-doas -u "$IUSER" bash -c "git clone '$REPO_URL' && (cd inferno_runners && ./01_install.sh)"
+cd inferno_runners
+doas -u "$IUSER" "bash 01_install.sh"
