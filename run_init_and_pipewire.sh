@@ -16,4 +16,4 @@ doas cp config/alsa.conf /etc/alsa/conf.d/80-inferno.conf
 sleep 1
 
 taskset -c "$CORES_PIPEWIRE" pipewire -c "$INFPATH/config/pipewire.conf" &
-taskset -c "$CORES_WIREPLUMBER" wireplumber &
+taskset -c "$CORES_WIREPLUMBER" wireplumber -c "$INFPATH/config/wireplumber.conf" &
