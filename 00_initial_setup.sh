@@ -17,7 +17,8 @@ REPO_URL="https://github.com/maze42d/inferno_runners"
 
 
 echo "Installing dependencies"
-apt install -y git doas udev dbus alsa-utils rtkit pipewire wireplumber libasound2-dev tmux git pkg-config libasound2-dev libasound2-plugins
+# install -y just doesnt work?
+yes | apt install git doas udev dbus alsa-utils rtkit pipewire wireplumber libasound2-dev tmux git pkg-config libasound2-dev libasound2-plugins
 
 # check for user inferno
 if ! id -u "$IUSER" >/dev/null 2>&1; then
