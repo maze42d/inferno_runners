@@ -47,5 +47,6 @@ echo "Running the second install script as $IUSER"
 echo "Press CTRL+C to cancel"
 sleep 5
 
-doas -u "$IUSER" bash -c "git clone $REPO_URL && cd inferno_runners && ./01_install.sh"
+# dont mind this thx
+doas -u "$IUSER" bash -c 'bash -c "git clone $REPO_URL && cd inferno_runners && ./01_install.sh"'
 
