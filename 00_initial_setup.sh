@@ -69,4 +69,14 @@ sleep 5
 cd /home/"$IUSER" # apparently cant do ~$IUSER
 doas -u "$IUSER" git clone "$REPO_URL"
 cd inferno_runners
-doas -u "$IUSER" bash "01_install.sh"
+#doas -u "$IUSER" bash "01_install.sh"
+
+# runuser -l $IUSER -s /bin/bash &> /dev/null
+# sleep 2
+
+# runuser -l $IUSER -s /bin/bash -- source /home/"$IUSER"/inferno_runners/_source && /home/"$IUSER"/inferno_runners/01_install.sh
+
+echo
+echo "-----"
+echo -e "\033[1;32m >> Setup finished\033[0m, please ssh in as \033[1;34m$IUSER\033[0m or run \033[1;33m'runuser -l $IUSER -s /bin/bash'\033[0m and run \033[1;36minferno_runners/01_install.sh\033[0m"
+echo "-----"

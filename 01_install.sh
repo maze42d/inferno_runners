@@ -47,7 +47,7 @@ doas systemctl enable --now rtkit-daemon.service
 
 
 # disable pipewire
-doas systemctl disable --user --now pipewire.service wireplumber.service
+systemctl disable --user --now pipewire.service wireplumber.service
 
 # enable irqbalance
 # doas systemctl enable --now irqbalance.service
