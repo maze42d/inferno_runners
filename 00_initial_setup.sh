@@ -19,6 +19,9 @@ echo "Installing dependencies"
 # install -y just doesnt work?
 yes | apt install git doas udev dbus alsa-utils rtkit tmux pkg-config libasound2-dev libasound2-plugins pipewire pipewire-bin wireplumber libspa-0.2-dev libspa-0.2-modules libpipewire-0.3-common libpipewire-0.3-dev
 
+# it was broken on mine so might as well
+yes | apt install --reinstall git
+
 # disable packagekitd because we're running headless anyway
 echo "Disabling packagekitd"
 systemctl disable packagekit.service --now
