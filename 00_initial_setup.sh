@@ -17,7 +17,15 @@ REPO_URL="https://github.com/maze42d/inferno_runners"
 
 echo "Installing dependencies"
 # install -y just doesnt work?
-yes | apt install git doas udev dbus alsa-utils rtkit tmux pkg-config libasound2-dev libasound2-plugins pipewire pipewire-bin wireplumber
+yes | apt install git doas udev dbus alsa-utils rtkit tmux pkg-config libasound2-dev libasound2-plugins pipewire pipewire-bin wireplumber libspa-0.2-dev libspa-0.2-modules libpipewire-0.3-common libpipewire-0.3-dev
+
+# disable packagekitd because we're running headless anyway
+echo "Disabling packagekitd"
+systemctl disable packagekit.service --now
+
+# disable unattended-upgrades cuz i dont like it
+echo "Disabling unattended-upgrades"
+systemctl disable unattended-upgrades --now
 
 # check for user inferno
 if ! id -u "$IUSER" >/dev/null 2>&1; then
