@@ -19,7 +19,7 @@ if ! which rustup > /dev/null; then
 fi
 
 # ./install.sh reinstall
-if [[ "$1" == "reinstall" ]]; then
+if [[ "$1" == "reinstall" || "$1" == "--reinstall" ]]; then
     echo "Rebuilding and reinstalling inferno and statime"
     cd statime
     CARGO_NET_GIT_FETCH_WITH_CLI=true cargo build -r -j3
