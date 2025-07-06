@@ -67,6 +67,7 @@ git clone --recursive https://github.com/teodly/inferno || echo "inferno already
 
 # build
 cd statime
+git apply "$DIR/patches/statime_radxa-mac-address.patch"
 CARGO_NET_GIT_FETCH_WITH_CLI=true cargo build -r
 
 cd "$DIR"

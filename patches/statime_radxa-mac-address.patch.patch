@@ -1,0 +1,17 @@
+diff --git a/statime-linux/src/main.rs b/statime-linux/src/main.rs
+index 8a46b5e..0e3c1bd 100644
+--- a/statime-linux/src/main.rs
++++ b/statime-linux/src/main.rs
+@@ -986,10 +986,8 @@ fn get_clock_id(allowed_names: &[InterfaceName]) -> Option<[u8; 8]> {
+ 
+     for mac in candidates {
+         // Ignore multicast and locally administered mac addresses
+-        if mac[0] & 0x3 == 0 && mac.iter().any(|x| *x != 0) {
+-            let f = |i| mac.get(i).copied().unwrap_or_default();
+-            return Some(std::array::from_fn(f));
+-        }
++        let f = |i| mac.get(i).copied().unwrap_or_default();
++        return Some(std::array::from_fn(f));
+     }
+ 
+     None
