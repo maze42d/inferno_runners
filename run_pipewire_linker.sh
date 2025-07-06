@@ -1,6 +1,6 @@
 # shellcheck disable=SC2148
 
-target_nodes=("Dummy-Driver" "Freewheel-Driver" "Midi-Bridge" "hdmi")
+target_nodes=("Dummy-Driver" "Freewheel-Driver" "Midi-Bridge" "alsa_output.platform-hdmi-sound.stereo-fallback")
 
 contains() {
   local e
