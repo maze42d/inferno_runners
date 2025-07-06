@@ -9,8 +9,14 @@ cd "$DIR"
 source "_source"
 
 pwd
-echo "Cargo installed: $(which cargo || echo "no, please quit and install rustup")"
+echo "Cargo installed: $(which cargo || echo "no, installing")"
 sleep 2
+
+source "_source"
+
+if ! which rustup > /dev/null; then
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
 
 # ./install.sh reinstall
 if [[ "$1" == "reinstall" ]]; then
