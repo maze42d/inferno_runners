@@ -4,8 +4,8 @@ set -e
 
 # sleep if is service
 if ! [ -t 1 ]; then
-    echo "Not running in a terminal; sleeping for a couple seconds. (10 is a safe number)"
-    sleep 2
+    echo "Not running in a terminal; sleeping for a couple seconds" # try 10 if the service has a problem starting
+    sleep 1
 fi
 
 DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"

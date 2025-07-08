@@ -5,10 +5,9 @@ Description=Start Inferno Runners Launch Script
 Type=oneshot
 RemainAfterExit=yes
 WorkingDirectory=/home/inferno/inferno_runners
+ExecStartPre=/bin/sleep 10
 ExecStart=/usr/bin/bash %h/inferno_runners/launch.sh
 StandardOutput=journal
 StandardError=journal
 Restart=on-failure
 
-[Install]
-WantedBy=multi-user.target
