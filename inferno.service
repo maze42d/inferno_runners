@@ -1,11 +1,13 @@
 [Unit]
 Description=Start Inferno Runners Launch Script
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
 WorkingDirectory=/home/inferno/inferno_runners
-ExecStartPre=/bin/sleep 10
+ExecStartPre=/bin/sleep 2
 ExecStart=/usr/bin/bash %h/inferno_runners/launch.sh
 StandardOutput=journal
 StandardError=journal
