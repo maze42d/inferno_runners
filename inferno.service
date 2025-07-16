@@ -4,12 +4,13 @@ After=network-online.target
 Wants=network-online.target
 
 [Service]
-Type=oneshot
+Type=forking
 RemainAfterExit=yes
 WorkingDirectory=/home/inferno/inferno_runners
-ExecStartPre=/bin/sleep 2
-ExecStart=/usr/bin/bash %h/inferno_runners/launch.sh
+ExecStart=/usr/bin/bash /home/inferno/inferno_runners/launch.sh
 StandardOutput=journal
 StandardError=journal
 Restart=on-failure
 
+[Install]
+WantedBy=default.target
