@@ -22,17 +22,28 @@ fi
 if [[ "$1" == "reinstall" || "$1" == "--reinstall" ]]; then
     echo "Rebuilding and reinstalling inferno and statime"
     cd statime
+    git pull
     CARGO_NET_GIT_FETCH_WITH_CLI=true cargo build -r -j3
 
     cd "$DIR"
 
     cd inferno
+    git pull
     cargo build -r -j3
 
     doas cp -v target/release/libasound_module_pcm_inferno.so /usr/lib/aarch64-linux-gnu/alsa-lib
-    exit 0
-fi
 
+    systemctl --user disable --now inferno.service || true
+
+    mkdir -p "$HOME/.config/systemd/user"
+    cp $DIR/inferno.service "$HOME/.config/systemd/user/inferno.service"
+    systemctl --user daemon-reload
+    systemctl --user enable --now inferno.service
+    echo "Enabled inferno user service for user $(whoami)"
+
+    exit 0
+
+fi
 # deps
 doas apt install -y pipewire wireplumber libasound2-dev tmux git pkg-config libasound2-dev libasound2-plugins rtkit
 
@@ -61,13 +72,14 @@ doas cp -v "$DIR/config/polkit-rtkit-audio.rules" /etc/polkit-1/rules.d/90-infer
 doas mkdir -p /etc/security/limits.d
 doas cp -v "$DIR/config/limits.conf" /etc/security/limits.d/90-inferno-pipewire.conf
 
+
 # clone
 git clone --recurse-submodules -b inferno-dev https://github.com/teodly/statime || echo "statime already cloned or failed to clone; perms?"
 git clone --recursive https://github.com/teodly/inferno || echo "inferno already cloned or failed to clone; perms?"
 
 # build
 cd statime
-git apply "$DIR/patches/statime_radxa-mac-address.patch"
+git apply "$DIR/patches/statime_radxa-mac-address.patch" || true
 CARGO_NET_GIT_FETCH_WITH_CLI=true cargo build -r
 
 cd "$DIR"
